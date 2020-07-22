@@ -110,6 +110,39 @@ class Render(object):
 				y += 1 if y0 < y1 else -1
 				limit += 2*dx
 
+		#Funciones para aplicar la ecuacion de la recta y dibujar lineas
+	def glLineModel(self, x0, y0, x1, y1):
+		#Para puede recibir coordenadas mayores al rango de -1 y 1
+		dx = abs(x1 - x0)
+		dy = abs(y1 - y0)
+
+		steep = dy > dx
+
+		if steep:
+			x0, y0 = y0, x0
+			x1, y1 = y1, x1
+		if x0 > x1:
+		 	x0, x1 = x1, x0
+		 	y0, y1 = y1, y0
+
+		dx = abs(x1 - x0)
+		dy = abs(y1 - y0)
+
+		offset = 0
+		limit = dx
+		
+		y = y0
+		for x in range(x0, x1):
+			if steep:
+				self.glLinePoint(y, x)
+			else:
+				self.glLinePoint(x, y)
+			
+			offset += dy*2
+			if offset >= limit:
+				y += 1 if y0 < y1 else -1
+				limit += 2*dx
+
 	def glModel(self, filename, translate, scale):
 	    model = Obj(filename)
 	    
@@ -127,8 +160,8 @@ class Render(object):
 	        y1 = round((v1[1] + translate[1]) * scale[1])
 	        x2 = round((v2[0] + translate[0]) * scale[0])
 	        y2 = round((v2[1] + translate[1]) * scale[1])
-
-	        self.glLine(x1, y1, x2, y2)
+	        print(x1, y1, x2, y2)
+	        self.glLineModel(x1, y1, x2, y2)
 
 	def finish(self, filename):
 		f = open(filename, 'bw')

@@ -11,11 +11,11 @@ height = 1000
 
 bitmap = Render(width, height) #los ultimos tres son los colores son los del background
 
-bitmap.glViewPort(500, 500, width , height)
+bitmap.glViewPort(posX, posX, width-500 , height-500)
 bitmap.glClearColor(0, 0, 0) #background color
 bitmap.glclear()
 bitmap.glColor(1, 1, 1) #estos colores son los que se usaran en Vertex
-bitmap.glModel('./JapaneseGates.obj', (500, 500), (10, 10))
+bitmap.glModel('./JapaneseGates.obj', (17, 15), (25, 25))
 
 
 bitmap.finish('out.bmp')
