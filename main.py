@@ -15,7 +15,7 @@ bitmap.glViewPort(posX, posX, width-500 , height-500)
 bitmap.glClearColor(0, 0, 0) #background color
 bitmap.glclear()
 bitmap.glColor(1, 1, 1) #estos colores son los que se usaran en Vertex
-bitmap.glModel('./JapaneseGates.obj', (17, 15), (25, 25))
+bitmap.glModel('./camero.obj', (17, 15), (25, 25))
 
 
-bitmap.finish('out.bmp')
+bitmap.finish('transformers.bmp')
